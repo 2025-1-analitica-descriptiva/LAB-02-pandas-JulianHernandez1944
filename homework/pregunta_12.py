@@ -7,6 +7,15 @@ librerias de pandas para resolver las preguntas.
 
 
 def pregunta_12():
+    import pandas as pd
+    tb = pd.read_csv("files/input/tbl2.tsv", sep='\t')
+    tb['c5'] = tb['c5a']+':' + tb['c5b'].astype(str)
+    tb = tb.groupby('c0')['c5'].apply(lambda x: ','.join(sorted(x))).reset_index()
+    return tb
+if __name__ == '__main__':
+    print(pregunta_12())
+
+     
     """
     Construya una tabla que contenga `c0` y una lista separada por ','
     de los valores de la columna `c5a`  y `c5b` (unidos por ':') de la
